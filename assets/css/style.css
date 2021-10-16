@@ -1,0 +1,812 @@
+body{
+    margin: 0;        /* Убираем отступы */
+    background: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color:black;
+    line-height: 1.6; /*межстрочный отступ */
+    overflow-x: hidden; /*если есть белая полоса*/
+}
+
+/*для всех элементов страницы,
+для всех псевдоэлементов страницы*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* наш контейнер в котором макс ширина 1200*/
+.container{
+    width:100%;
+    max-width:1230px;
+    margin: auto;
+    padding: 0 15px; /*слева и справа по 15 пкс*/
+}
+
+
+/* сбросим у всех заголовков margin*/
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+}
+
+/*разделяет в 
+секции заказать дом полоской*/
+hr{
+    display: block;
+    width:100%;
+    height: 1px;
+    margin: 100px 0;
+    border:0;
+    background-color:rgb(122, 124, 126)
+}
+
+/* стилизация шапки */
+.header{
+    width: 100%; 
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /*Любые позиционированные элементы 
+    на веб-странице могут 
+    накладываться друг на друга
+    Чем больше значение, тем выше находится элемент 
+    по сравнению с теми элементами, у которых оно меньше*/
+    padding-top: 20px; /* чтобы были отступы сверху*/
+}
+
+.header.fixed{
+    padding-right: 1px 0;
+    position: fixed;
+    background-color:rgba(162, 166, 170, 0.603);
+
+}
+
+/* чтобы верхний блок растянулся на всю ширину экрана*/
+.header_inner{
+    display: flex;
+    justify-content: space-between; /* чтобы между ними было пространство*/
+    align-items: center; /* выравнивание по центру элементов*/
+
+}
+
+/*стилизация логотипа */
+.logotip{
+    font-size: 30px;
+    font-weight: 700;
+    color:blanchedalmond;
+    margin: 20px 15px;
+}
+
+/*стиль для навигации*/
+.nav{
+    font-size: 15px;
+    text-transform: uppercase;
+}
+ /* стили для верхней панели */
+.link_nav{
+    display: inline-block;/* отображение*/
+    vertical-align: top;
+    margin: 20px 15px;
+    position:relative;
+    color:blanchedalmond;
+    text-decoration: none;
+    /*плавная смена цвета с помощью трансишна*/
+    transition: color 0.2s linear;  /* цвет, длительность*/
+}
+
+/* работа с псевдоэлементами чтобы при наведении на 
+элементы верхнего меню было подчеркивание*/
+.link_nav:after{
+    content: "";
+    display: block;
+    width:100%;
+    height: 2px;
+    background-color: aliceblue;
+    position: absolute; /* выравниваение идет относительно ссылки родителя в линк нав position relative*/
+    top:100%;
+    left:0;
+    z-index: 1;
+    display: none; 
+}
+
+.link_nav:hover{ /* при наведении на текст, он станет серым*/
+    color:black;
+
+}
+
+.link_nav:hover:after{ /*только при наведении на элементы в верхней панели
+    будет отображение того что написано в псевдоэлементе афтер */
+    display: block;
+}
+
+
+/* стиль для первого блока intro*/
+.introblock{
+    display: flex;
+    flex-direction: column;
+    padding-top: 35%;/* отступ от низа для текста*/
+    width: 100%;
+    height: 100vh; /* высота - 100% экрана посетителя*/
+    background: url("../images/dom.jpg") center no-repeat;
+    background-size:cover; /* свойство для занятия всей плоащди поверхности экрана*/
+}
+
+.titleintro{
+    font-size: 50px; /*размер текст нас выбирают */
+    font-weight: 600;
+    text-transform: uppercase; /*все капсом*/
+    text-align: center;
+    line-height: 1; /* (межстрочный интервал) текста, отсчет 
+    ведется от базовой линии шрифта */
+    text-shadow: blanchedalmond 0 0 15px;
+    color:blanchedalmond;
+    display: block;
+}
+
+.intro_inner_block{
+    width: 100%;
+    max-width: 800px;
+    margin: auto; /* выравнивание по центру*/
+    text-align: center;
+}
+
+/* стиль для кнопки*/
+.buttton{
+display: inline-block;
+vertical-align: bottom;
+border: 3px solid aliceblue;
+padding: 4px 8px;
+color:blanchedalmond;
+text-transform: uppercase;
+font-size: 14px;
+font-weight: 600;
+text-decoration: none;/* убрали подчеркивание ссылки*/
+transition: color 0.2s linear; /* плавность при наведении на кнопку*/
+
+}
+
+/*стиль для окраски кнопки при наведении на нее */
+.buttton:hover{
+    color: black;
+    text-shadow: blanchedalmond 0 0 15px;
+
+}
+
+/* новый блок section*/
+.newsection{
+    padding: 70px 0;
+}
+
+.header_section{
+    width: 100%;
+    max-width: 900px;
+    margin: 80px auto 80px;
+   text-align: center;
+}
+
+.section_subtitile{
+    font-size: 24px;
+    color:black;
+    font-weight: 600;
+}
+
+.section_title{
+    font-size: 24px;
+    color:black;
+}
+
+/* создание полоски после блока наша история*/
+.section_title:after{
+    content:"";
+    display:block;
+    width: 60px;
+    height: 3px; 
+    /* отступы сверху и снизу  право лево 0 0*/
+    margin: 30px auto 0;
+    background-color:black;
+}
+
+.section_title{
+    font-size: 15px;
+    color:black;
+}
+
+.section--clients{
+    background: whitesmoke;
+}
+
+/* блок с картинками*/
+.about{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+    margin-left: 5%;
+       
+}
+
+/* секция именно картинок*/
+.about_content{
+   
+    margin-bottom: 2%;
+    width: 400px;
+    position: relative; 
+    /*становится
+     родительским позицзионированием*/   
+}
+
+/*псевдоэлемент при наводе на которой текст 
+показывается потому что меняется opacity*/
+.about_content:hover .about_text{
+opacity: 1;
+}
+
+/* псевдоэлемент сдвига в блоке about content 
+обращаемся к блоку about img чтобы сдвинуть картинку
+по оси х-10px, по оси у-10px, и z-0px*/
+.about_content:hover .about_img {
+    transform: translate3d(-10px, -10px, 0);
+}
+
+/* псевдоэлемент прозрачности в блоке about content 
+обращаемся к блоку about img*/
+.about_content:hover .about_img img{
+    opacity: 0.5;
+}
+/* градиент при наведении картинки */
+.about_img{
+    background: linear-gradient(to bottom,
+     rgb(195, 223, 248), blanchedalmond);
+     transition: transform 0.1s, linear;
+}
+
+/*это стилизация тега*/
+.about_img img{
+    display: block;
+    transition: opacity 0.2s linear;
+    max-width: 100%;
+    height: auto; /*последние два параметра
+    резиновые*/
+}
+
+/*стиль задания текста при наведении на картинку*/
+.about_text{
+    width:100%;
+    opacity: 0;
+    font-size: 18px;
+    color:whitesmoke;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    transition: opacity 0.3s linear; /* transition для плавности показа текста*/
+    /*этот блок кода выравнивает текст при 
+    наведении на картирнку по центру*/
+    top:50%;
+    left:0;
+    z-index:2;
+    transform: translate3d(0,-50,0);
+
+}
+
+
+/*полоска разделения между секциями*/
+.statistic{
+background-color:black;
+}
+
+.stat{
+    display: flex;
+}
+
+.stat_item{
+    padding: 3% 4%;
+    flex: 1 1 0;
+    
+    text-align: center;
+    color: blanchedalmond;
+}
+
+.stat_count{
+    font-size: 30px;
+    color:blanchedalmond;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+/*блок с иконками, который перебросит на старницу
+где можно */
+
+.services{
+    display: flex;
+    flex: wrap; /*чтобы друг над другом
+    потому что ширина 33%*/
+}
+
+.services_item{
+     /*границы пэдингов*/
+    padding: 0 35px 40px 85px;
+    position: relative;
+    width: 33.3333%; 
+    margin-bottom: 40px;
+}
+/*полоска серая у этого модификатора*/
+.services_item--border{
+    border-bottom: 1px solid lightslategray;
+}
+
+.services_icon{
+    position: absolute;
+    top: 0;
+    left: 30px;
+    z-index: 1;
+}
+
+.services_title{
+    margin-bottom: 10px;
+    font-size:14px;
+    color:black;
+    text-transform: uppercase;
+}
+
+.services_text{
+    font-size: 15px;
+    color:black;
+}
+
+.under_button{
+    margin:20%;
+    padding: 10px;
+}
+
+
+
+/*новая секция работы*/
+
+.works{
+    display:flex; /*контейнер для воркс*/
+}
+
+.works_col{
+    flex: 1 1 0; /*чтобы все колокнки были одинакогов размера*/
+}
+
+.works_item{
+    position:relative;
+
+    background: linear-gradient(to 
+    bottom, blanchedalmond,aliceblue);
+}
+
+/*при наводе на ворк и
+псевдокласс будем уменшать прозрачность*/
+.works_item:hover .works_image{
+    opacity: 0.1;
+}
+
+/*при наводе на итем будет показываться текст 
+потому что для него опасити стоит 0*/
+.works_item:hover .works_info{
+    opacity: 1;
+}
+
+
+.works_image{
+    display: block; /*чтобы не было отступа снизу*/
+    transition: opacity 0.2s linear;
+    max-width: 100%;
+    height: auto; /*последние два параметра
+    резиновые*/
+}
+
+/*раздел информации выраваниваем относительно
+родительского блока по центру*/
+.works_info{
+    width:100%;
+    position:absolute;
+    top:50%;
+    left:0;
+    z-index: 1;
+    transform: translate3d(0,-50%,0);
+    transition:opacity 0.2s linear;
+    text-align: center;
+    color:rgb(44, 44, 44);
+    padding: auto;
+    opacity: 0;
+}
+
+.works_title{
+    margin-bottom: 5px;
+    color:black;
+    font-size:14px;
+    text-transform: uppercase;
+}
+
+.works_text{
+    font-size: 15px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+
+.clients{
+    display: flex;
+    flex-wrap: wrap; /*чтобы колонки перепрыгивали
+    на новую строку*/
+    margin-top: 80px;
+}
+
+.clients_item{
+    width:50%;
+    padding: 0px 25px 0 160px;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.clients_photo{
+    width:110px;
+    height:110px;
+    border-radius: 50%;/*чтобы загружать квадратные фото
+    но они сами округлилялись*/
+    position: absolute;
+    top:0;
+    left:40px;
+    z-index:1;
+}
+
+.clients_name{
+    margin-bottom: 5px; /*разделители*/
+    font-size:14px;
+    color:black;
+    text-transform: uppercase;
+    
+}
+
+.clients_prof{
+    color:black;
+    font-style: italic;
+    font-weight:300;
+    font-size: 15px;
+}
+
+.clients_text{
+    font-size: 15px;
+    color:black;
+}
+
+/*псевдоэлемент для черточки
+потому что черта до текста поэтому
+бефор*/
+.clients_text:before {
+    content: "";
+    display:block;
+    width: 60px;
+    height: 3px;
+    background-color: cadetblue;
+    margin: 15px 0; /*сверху и снизу 20 
+    слева и справа 0*/
+
+}
+
+/*РАБОТА С футером*/
+
+.footer{
+    padding-top: 65px;
+    background-color: rgb(132, 136, 138);
+    
+    
+}
+
+.footer_inner{
+    padding-bottom: 65px;
+}
+
+.footer_logo{
+    margin-bottom: 30px; /*отступ от 
+    текста который ниже*/
+    font-size:46px;
+    font-weight: 700;
+    color:whitesmoke;
+}
+.footer_text{
+    font-size:15px;
+    text-transform: uppercase;
+    color:whitesmoke;
+    margin-bottom: 30px;
+}
+
+.footer_social{
+    margin-bottom: 25px;
+}
+
+.footer_social-header{
+    font-size: 18px;
+    color:whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    padding-bottom: 15px;
+}
+
+.footer_social-content{
+    padding-top: 15px;
+    font-size:15px;
+    color:whitesmoke;
+    font-style:italic;
+    font-weight: 300;
+    margin-bottom: 60px;
+}
+
+.footer_social_content a{
+    
+   
+    display: inline-block;
+    vertical-align: middle;
+    margin-left:10px;
+    font-size:10px;
+    color:lime;
+    margin-bottom: 40px;
+}
+
+
+.subscribe{
+    width: 100%;
+    max-width: 800px;
+    display:flex;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.email_input{
+    padding: 12px; /*со всех сторон*/
+    background: #fff;
+    border:0;
+    font-style: italic;
+    font-size:15px;
+    color:rgb(112, 156, 206);
+    font-weight: 700px; 
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.1;
+}
+
+.email_btn{
+    height: 60px;
+    background-color:lightslategray;
+    border: 3px solid rgb(226, 216, 243);
+    font-family: 'Montserrat', sans-serif;
+    font-size:15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color:whitesmoke;
+    padding: 12px 10px; /*сверху и снизу второе значение слева и справа*/
+    line-height: 1.1;
+}
+
+.copyright{
+    padding:20px 0;
+    border-top: 1px solid whitesmoke;
+    text-align: center;
+    font-size:14px;
+    color:black;
+
+}
+
+/*медиа запросы пишут внизу, потому что 
+чтение идет сверху вниз
+если медиазапрос будет выше, то будет
+чтение сначала первого*/
+
+@media(max-width: 1230px){
+
+    /*у блока 
+    интро у 
+    заголовка переопределиляем шрифт*/
+   .titleintro{
+       font-size:50px;
+   }
+   
+}
+
+/*планшет перевернутый*/
+@media(max-width: 990px){
+
+    /*блок интро*/
+   .titleintro{
+       font-size:35px;
+
+    /*стиль для секции где заказывать дом*/
+     
+   }  
+    .services_item{
+        /*границы пэдингов*/
+      
+       width: 50%; 
+      
+   }
+
+   .services_item--border{
+       border-bottom:0; /*границы уже нет*/
+   }
+   
+   
+
+}
+
+/*работа с планшетами вертикально*/
+
+@media(max-width: 770px){
+
+    /*блок интро*/
+   .titleintro{
+       font-size:20px;
+   }
+    /*стиль навигации*/
+   .nav{
+       font-size: 10px
+    }
+
+    /*работаем с шапкой новой секции в которой есть
+    текст*/
+    .newsection{
+        padding: 30px 0; /*paading was 70 now 30*/
+    }
+    /*делаем отсупы у блока верхней секции в 2 раза меньше*/
+    .header_section{
+        margin: 40px auto 40px;
+    }
+
+    /*везде меняем шрифт*/
+    .section_subtitile{
+        font-size:15px;
+    }
+    .section_title{
+        font-size:12px;
+    }
+    .section_text{
+        font-size:8px;
+    }
+
+    /*работа с секцией разделительной полосы*/
+    .stat_item{
+        padding: 1.5% 2%;
+    }
+/*в разделительной полосе меняю шрифт*/
+    .stat_count{
+        font-size: 20px;
+       
+        font-weight: 300;
+        
+    }
+     /*разделительная полоса после текста*/
+     .section_title:after {
+        margin:12px auto 0;
+        }
+
+        /*стиль для секции где заказывать дом*/
+    
+        .services_item{
+            width: 50%; 
+            padding-bottom: 0;
+           
+        }
+
+        .services_item--border{
+            border-bottom:0; /*границы уже нет*/
+        }
+   
+}
+/*мобильные телефоны*/
+@media(max-width: 575px){
+
+    /*блок интро*/
+   .titleintro{
+       font-size:15px;
+   }
+
+   /*стиль навигации*/
+   .nav{
+    display:none;
+    }
+
+/*работаем с шапкой новой секции в которой есть
+    текст*/
+    .newsection{
+        padding: 15px 0; /*paading was 70 now 30*/
+    }
+    /*делаем отсупы у блока верхней секции в 2 раза меньше*/
+    .header_section{
+        margin: 20px auto 20px;
+    }
+
+    /*везде меняем шрифт*/
+    .section_subtitile{
+        font-size:9px;
+    }
+    .section_title{
+        font-size:9px;
+    }
+    .section_text{
+        font-size:6px;
+    }
+
+     /*разделительная полоса после текста*/
+     .section_title:after {
+        margin: 8px auto 0;
+        }
+
+    .header_section{
+        margin-bottom: 50px;
+    }
+
+    /*работа с секцией разделительной полосы*/
+    .stat_item{
+        padding: 1% 1%;
+    }
+
+    /*в разделительной полосе меняю шрифт*/
+    .stat_count{
+        font-size: 10px;
+        font-weight: 100;      
+    }
+
+    /*стиль для секции где заказывать дом*/
+    
+    .services_item{
+        /*границы пэдингов*/
+      
+       width: 100%; 
+       padding-left: 55px;  
+       
+       
+   }
+
+   .services_icon{
+       justify-content: center;
+       left:0;
+
+   }
+   
+
+   /*новый блок отзывов клиентов*/
+.clients{
+    max-width:600px;
+    margin: 0 auto ;
+}
+
+.clients_item{
+    width:100%;
+    padding-right: 0;
+}
+
+.clients_photo{
+    position: static;
+}
+
+.clients_item{
+    padding-left: 0;
+}
+
+/*работаем с футером*/
+
+.subscribe{
+    flex-wrap:wrap;
+    max-width: none;
+}
+
+.email_input{
+    width:100%;
+   
+    
+}
+
+.email_btn{
+    width:100%;
+}
+
+
+
+}
+
+
